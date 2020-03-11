@@ -1,0 +1,1 @@
+<view class="content"><button type="primary" data-event-opts="{{[['tap',[['goTest',['$event']]]]]}}" bindtap="__e">点击考试</button></view>
