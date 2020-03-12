@@ -3,7 +3,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "题库"
+				"navigationBarTitleText": "人才培训小程序"
 			}
 		}
         ,{
@@ -13,9 +13,15 @@
 				}
         }
         ,{
-            "path" : "pages/index/exam/exam",
+            "path" : "pages/exam/exam",
             "style" : {
 				"navigationBarTitleText": "考试"
+			}
+        }
+        ,{
+            "path" : "pages/login/login",
+            "style" : {
+				"navigationBarTitleText": "登录"				
 			}
         }
     ],

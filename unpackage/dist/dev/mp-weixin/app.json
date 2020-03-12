@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/personalcenter/personalcenter",
-    "pages/index/exam/exam"
+    "pages/exam/exam",
+    "pages/login/login"
   ],
   "subPackages": [],
   "window": {

@@ -148,23 +148,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
-    return {};
-
+    return {
+      isLogin: false };
 
   },
   onLoad: function onLoad() {
-
+    var _isLogin = getApp().globalData.isLogin;
+    if (_isLogin) {
+      this.isLogin = true;
+    }
+  },
+  onShow: function onShow() {
+    var _isLogin = getApp().globalData.isLogin;
+    if (_isLogin) {
+      this.isLogin = true;
+    }
   },
   methods: {
     goTest: function goTest() {
       uni.navigateTo({
-        url: './exam/exam',
+        url: '../exam/exam',
         success: function success(res) {},
         fail: function fail() {},
         complete: function complete() {} });
+
+    },
+    goLogin: function goLogin() {
+      uni.navigateTo({
+        url: '../login/login' });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

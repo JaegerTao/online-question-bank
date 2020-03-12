@@ -1,1 +1,1 @@
-<view class="content"><button type="primary" data-event-opts="{{[['tap',[['goTest',['$event']]]]]}}" bindtap="__e">点击考试</button></view>
+<view class="content"><block wx:if="{{!isLogin}}"><view class="notLogin">当前未登录<button type="default" data-event-opts="{{[['tap',[['goLogin',['$event']]]]]}}" bindtap="__e">点击登录</button></view></block><block wx:if="{{isLogin}}"><view class="hasLogin"><button type="primary" data-event-opts="{{[['tap',[['goTest',['$event']]]]]}}" bindtap="__e">点击考试</button></view></block></view>
