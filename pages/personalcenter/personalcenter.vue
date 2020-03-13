@@ -1,5 +1,5 @@
 <template>
-	<view class="center">
+	<view class="center" v-if="!isLogin">
 		<view class="logo" @click="goLogin" :hover-class="!login ? 'logo-hover' : ''">
 			<image class="logo-img" :src="login ? userinfo.avatarUrl :avatarUrl"></image>
 			<view class="logo-title">
@@ -7,15 +7,11 @@
 				<text class="go-login navigat-arrow" v-if="!login">&#xe65e;</text>
 			</view>
 		</view>
+		
 		<view class="center-list">
 			<view class="center-list-item border-bottom">
 				<text class="list-icon">&#xe60f;</text>
 				<text class="list-text">帐号管理</text>
-				<text class="navigat-arrow">&#xe65e;</text>
-			</view>
-			<view class="center-list-item">
-				<text class="list-icon">&#xe639;</text>
-				<text class="list-text">新消息通知</text>
 				<text class="navigat-arrow">&#xe65e;</text>
 			</view>
 		</view>
@@ -25,16 +21,36 @@
 				<text class="list-text">帮助与反馈</text>
 				<text class="navigat-arrow">&#xe65e;</text>
 			</view>
-			<view class="center-list-item">
-				<text class="list-icon">&#xe65f;</text>
-				<text class="list-text">服务条款及隐私</text>
+		</view>
+		
+	</view>
+	
+	<view class="center" v-else-if="isLogin">
+		<view class="logo" :hover-class="!isLogin ? 'logo-hover' : ''">
+			<image class="logo-img" :src="isLogin ? userinfo.avatarUrl :avatarUrl"></image>
+			<view class="logo-title">
+				<text class="uer-name">Hi，{{isLogin ? userinfo.name : '您已登录'}}</text>
+				<text class="go-login navigat-arrow" v-if="!isLogin">&#xe65e;</text>
+			</view>
+		</view>
+		<view class="center-list">
+			<view class="center-list-item border-bottom">
+				<text class="list-icon">&#xe60f;</text>
+				<text class="list-text">帐号管理</text>
 				<text class="navigat-arrow">&#xe65e;</text>
 			</view>
 		</view>
 		<view class="center-list">
-			<view class="center-list-item">
+			<view class="center-list-item border-bottom">
+				<text class="list-icon">&#xe60b;</text>
+				<text class="list-text">帮助与反馈</text>
+				<text class="navigat-arrow">&#xe65e;</text>
+			</view>
+		</view>
+		<view class="center-list">
+			<view class="center-list-item" @tap="logout">
 				<text class="list-icon">&#xe614;</text>
-				<text class="list-text">关于应用</text>
+				<text class="list-text">退出登录</text>
 				<text class="navigat-arrow">&#xe65e;</text>
 			</view>
 		</view>
@@ -45,21 +61,22 @@
 	export default {
 		data() {
 			return {
-				login: false,
+				isLogin: false,
 				avatarUrl: "../../static/unlogin.png",
-				userinfo: {}
+				userinfo: {
+					name: 'Tao',
+					avatarUrl: '../../static/logo.png'
+				}
 			}
 		},
 		onLoad() {
-			var _isLogin = getApp().globalData.isLogin;
-			if(_isLogin){
-				this.isLogin = true;
-			}
+			
 		},
 		onShow() {
-			var _isLogin = getApp().globalData.isLogin;
-			if(_isLogin){
+			if(global.isLogin()){
 				this.isLogin = true;
+			}else{
+				this.isLogin = false;
 			}
 		},
 		methods: {
@@ -72,6 +89,13 @@
 						complete: () => {}
 					});
 				}
+			},
+			logout(){
+				uni.setStorageSync('suid', '');
+				uni.setStorageSync('srand', '');
+				uni.switchTab({
+					url:'../index/index'
+				})
 			}
 		}
 	}

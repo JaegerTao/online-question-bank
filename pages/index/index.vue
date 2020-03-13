@@ -19,16 +19,19 @@
 				isLogin : false,
 			}
 		},
+		
 		onLoad() {
-			var _isLogin = getApp().globalData.isLogin;
-			if(_isLogin){
-				this.isLogin = true;
-			}
+			//初始化云函数
+			wx.cloud.init({
+				traceUser: true,
+				env: 'test-8qygl'
+			})
 		},
 		onShow() {
-			var _isLogin = getApp().globalData.isLogin;
-			if(_isLogin){
+			if(global.isLogin()){
 				this.isLogin = true;
+			}else{
+				this.isLogin = false;
 			}
 		},
 		methods: {

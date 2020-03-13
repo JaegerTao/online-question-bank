@@ -94,25 +94,40 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
+/* WEBPACK VAR INJECTION */(function(uni, global) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+global.isLogin = function () {
+  try {
+    var suid = uni.getStorageSync('suid');
+    var srand = uni.getStorageSync('srand');
+  } catch (e) {
+    //TODO handle the exception
+  }
+  if (suid === '' || srand === '') {
+    return false;
+  } else {
+    return {
+      suid: suid };
+
+  }
+};var _default =
 {
-  globalData: {
-    isLogin: null //全局变量，用于记录登录状态
-  },
+  // globalData:{
+  // 	isLogin: null,//全局变量，用于记录登录状态
+  // },
   onLaunch: function onLaunch() {
     console.log('App Launch');
-    try {
-      var suid = uni.getStorageSync('suid');
-      var srand = uni.getStorageSync('srand');
-    } catch (e) {
-      //TODO handle the exception
-    }
-    if (suid == '' || srand == '') {
-      this.$scope.globalData.isLogin = false;
-    } else {
-      this.$scope.globalData.isLogin = [suid, srand];
-    }
-    // console.log(this.$scope.globalData.isLogin)
+    // try{
+    // 	var suid  = uni.getStorageSync('suid');
+    // 	var srand = uni.getStorageSync('srand');
+    // }catch(e){
+    // 	//TODO handle the exception
+    // }
+    // if(suid == '' || srand == ''){
+    //   this.$scope.globalData.isLogin = false;
+    //  }else{
+    //   this.$scope.globalData.isLogin = [suid, srand];
+    // }
+    // // console.log(this.$scope.globalData.isLogin)
   },
   onShow: function onShow() {
     console.log('App Show');
@@ -120,7 +135,7 @@ __webpack_require__.r(__webpack_exports__);
   onHide: function onHide() {
     console.log('App Hide');
   } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! (webpack)/buildin/global.js */ 3)))
 
 /***/ }),
 /* 12 */
