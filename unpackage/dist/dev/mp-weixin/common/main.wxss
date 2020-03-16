@@ -6070,4 +6070,10 @@ scroll-view.cu-steps .cu-item {
 .cuIcon-btn:before {
 	content: "\E601";
 }
+page {
+    background-color: #FFFFFF;
+    height: 100%;
+    font-size: 28rpx;
+    line-height: 1.8;
+}
 

@@ -142,34 +142,82 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global, uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(global, uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var bwSwiper = function bwSwiper() {return __webpack_require__.e(/*! import() | components/bw-swiper/bw-swiper */ "components/bw-swiper/bw-swiper").then(__webpack_require__.bind(null, /*! ../../components/bw-swiper/bw-swiper.vue */ 45));};var circlePercent = function circlePercent() {return __webpack_require__.e(/*! import() | components/circle-percent/circle-percent */ "components/circle-percent/circle-percent").then(__webpack_require__.bind(null, /*! ../../components/circle-percent/circle-percent.vue */ 52));};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   data: function data() {
     return {
-      isLogin: false };
+      isLogin: false,
+      screenRatio: 0.75, //可使用屏幕宽高比,默认为 0.75
+      swiperList: [{
+        img: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1134399666,668654079&fm=26&gp=0.jpg',
+        text: '测试图片' },
+
+      {
+        img: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1042476468,2568241258&fm=26&gp=0.jpg',
+        text: '测试图片' },
+
+      {
+        img: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1042476468,2568241258&fm=26&gp=0.jpg',
+        text: '测试图片' }],
+
+
+      accuracy: 0 };
 
   },
+  components: {
+    bwSwiper: bwSwiper,
+    circlePercent: circlePercent },
 
-  onLoad: function onLoad() {
+  onLoad: function onLoad() {var _this = this;
     //初始化云函数
-    wx.cloud.init({
-      traceUser: true,
-      env: 'test-8qygl' });
+    // wx.cloud.init({
+    // 	traceUser: true,
+    // 	env: 'test-8qygl'
+    // })
 
+    //测试进度条
+    var i = 0; //需要变量来转换给this.loadPercent，否则满足条件无法clearInterval。
+    var timer = setInterval(function () {
+      if (i >= 80) {
+        clearInterval(timer);
+      } else {
+        i++;
+        _this.accuracy = i;
+      }
+    }, 10);
   },
   onShow: function onShow() {
     if (global.isLogin()) {

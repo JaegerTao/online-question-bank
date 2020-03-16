@@ -11,7 +11,11 @@
 			return {
 				
 			};
+		},
+		props:{
+			
 		}
+		
 	}
 </script>
 

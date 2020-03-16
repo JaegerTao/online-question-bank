@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "人才培训小程序",
-  "usingComponents": {}
+  "usingComponents": {
+    "bw-swiper": "/components/bw-swiper/bw-swiper",
+    "circle-percent": "/components/circle-percent/circle-percent"
+  }
 }

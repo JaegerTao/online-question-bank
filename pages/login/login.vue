@@ -18,7 +18,7 @@
 				<view class="form-input">
 					<input type="password" v-model="loginForm.password" value="" placeholder="密码" @focus="passwordF_B" @blur="passwordF_B" />
 				</view>
-				<button type="primary" form-type="submit" @tap="handleLogin">{{ login.loading ? "登录中...":"登 录"}} </button>
+				<button type="primary" form-type="submit" @tap="handleLogin">{{ loading ? "登录中...":"登 录"}} </button>
 			</form>
 		</view>
 	</view>
@@ -53,7 +53,7 @@
 				// }).then(res => {
 				// 	console.log(res)
 				// })
-
+				
 
 				//直接登录成功入口
 				this.loading = false;

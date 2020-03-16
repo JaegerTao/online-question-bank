@@ -22,8 +22,8 @@
 				<text class="navigat-arrow">&#xe65e;</text>
 			</view>
 		</view>
-		
 	</view>
+	
 	
 	<view class="center" v-else-if="isLogin">
 		<view class="logo" :hover-class="!isLogin ? 'logo-hover' : ''">

@@ -15,7 +15,9 @@ exports.main = async (event, context) => {
 	//   appid: wxContext.APPID,
 	//   unionid: wxContext.UNIONID,
 	// }
-	let url = 'http://wzdq123.com/';
+	
+	console.log(event)
+	let url = 'http://jwc.sicnu.edu.cn/';
 	return await rp(url).then(function(res) {
 		return res
 	}).catch(function(err) {

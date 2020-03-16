@@ -47,4 +47,10 @@
 	@import url("./common/uni.css");
 	@import url("./colorui/main.css");
 	@import url("./colorui/icon.css");
+	page {
+	    background-color: #FFFFFF;
+	    height: 100%;
+	    font-size: 28upx;
+	    line-height: 1.8;
+	}
 </style>

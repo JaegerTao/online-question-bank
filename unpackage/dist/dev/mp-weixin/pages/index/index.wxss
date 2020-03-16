@@ -14,5 +14,16 @@
 	-webkit-justify-content: center;
 	        justify-content: center;
 }
-
+.notLogin {
+	margin-top: 20rpx;
+}
+.top{
+	height: 310rpx;
+	border-radius: 20rpx;
+}
+.circlePercent {
+	position: absolute;
+	top: 30rpx;
+	left: 260rpx;
+}
 
