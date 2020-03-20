@@ -31,7 +31,7 @@
 			},
 			percent: {
 				type: String,
-				default: "0"
+				default: '80'
 			}
 		},
 		computed: {},
@@ -116,6 +116,7 @@
 				width: 100%;
 				text-align: center;
 				z-index: 90;
+				color: #000000;
 			}
 
 			.titleOne {
@@ -125,6 +126,7 @@
 				width: 100%;
 				text-align: center;
 				z-index: 90;
+				color: #000000;
 			}
 
 		}

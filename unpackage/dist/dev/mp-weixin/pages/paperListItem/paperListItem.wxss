@@ -1,0 +1,8 @@
+
+.paperName{
+	margin-left: 20rpx;
+}
+.cu-btn{
+	width: 250rpx;
+}
+

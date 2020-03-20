@@ -18,7 +18,7 @@
 				<view class="form-input">
 					<input type="password" v-model="loginForm.password" value="" placeholder="密码" @focus="passwordF_B" @blur="passwordF_B" />
 				</view>
-				<button type="primary" form-type="submit" @tap="handleLogin">{{ loading ? "登录中...":"登 录"}} </button>
+				<button class="bg-blue" form-type="submit" @tap="handleLogin">{{ loading ? "登录中...":"登 录"}} </button>
 			</form>
 		</view>
 	</view>
@@ -43,25 +43,44 @@
 			//处理登录
 			handleLogin() {
 				this.loading = true;
-
-				//发送请求，调用云函数
-				// wx.cloud.callFunction({
-				// 	name: 'loginOqb',
-				// 	data: {
-				// 		'loginForm' : this.loginForm
-				// 	}
-				// }).then(res => {
-				// 	console.log(res)
-				// })
 				
-
-				//直接登录成功入口
-				this.loading = false;
-				var suid = 1;
-				var srand = 1;
-				uni.setStorageSync('suid', suid);
-				uni.setStorageSync('srand', srand);
-				uni.navigateBack();
+				if(!this.checkMobile(this.loginForm.phoneNumber)){//检测手机号码格式
+					uni.showToast({
+						title: '请输入正确的手机号码',
+						duration: 1000,
+						icon: 'none'
+					})
+					this.loading = false;
+					return;
+				}else if(this.loginForm.password === ''){//检测密码
+					uni.showToast({
+						title: '请填写密码',
+						duration: 1000,
+						icon: 'none'
+					})
+					this.loading = false;
+					return;
+				}else{
+					// #ifdef MP-WEIXIN
+					//发送请求，调用云函数
+					// wx.cloud.callFunction({
+					// 	name: 'loginOqb',
+					// 	data: {
+					// 		'loginForm' : this.loginForm
+					// 	}
+					// }).then(res => {
+					// 	console.log(res)
+					// })
+					// #endif
+					
+					//直接登录成功入口
+					this.loading = false;
+					var suid = 1;
+					var srand = 1;
+					uni.setStorageSync('suid', suid);
+					uni.setStorageSync('srand', srand);
+					uni.navigateBack();
+				}
 			},
 
 			bindInput: function(e) {
@@ -74,6 +93,10 @@
 			},
 			formSubmit(e) {
 				console.log(e.detail.value);
+			},
+			//检测手机号码格式
+			checkMobile(mobile){
+				return RegExp(/^1[345789]\d{9}$/).test(mobile);
 			}
 		}
 	}
@@ -93,9 +116,10 @@
 	.form-input input {
 		background: #ffffff;
 		border-radius: 5px;
-		height: 40px;
+		height: 60rpx;
 		margin: 20px 0;
 		padding: 0 10px;
+		font-size: 40rpx;
 	}
 	
 	.login-img {

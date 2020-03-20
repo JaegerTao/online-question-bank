@@ -105,6 +105,7 @@
       width: 100%;
       text-align: center;
       z-index: 90;
+      color: #000000;
 }
 .box .boxContent .titleOne {
       font-size: 30rpx;
@@ -113,6 +114,7 @@
       width: 100%;
       text-align: center;
       z-index: 90;
+      color: #000000;
 }
 .box .atitle {
     margin-top: 0rpx;

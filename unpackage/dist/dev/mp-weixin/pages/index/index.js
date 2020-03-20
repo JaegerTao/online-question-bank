@@ -142,7 +142,26 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global, uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var bwSwiper = function bwSwiper() {return __webpack_require__.e(/*! import() | components/bw-swiper/bw-swiper */ "components/bw-swiper/bw-swiper").then(__webpack_require__.bind(null, /*! ../../components/bw-swiper/bw-swiper.vue */ 45));};var circlePercent = function circlePercent() {return __webpack_require__.e(/*! import() | components/circle-percent/circle-percent */ "components/circle-percent/circle-percent").then(__webpack_require__.bind(null, /*! ../../components/circle-percent/circle-percent.vue */ 52));};var _default =
+/* WEBPACK VAR INJECTION */(function(global, uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var bwSwiper = function bwSwiper() {return __webpack_require__.e(/*! import() | components/bw-swiper/bw-swiper */ "components/bw-swiper/bw-swiper").then(__webpack_require__.bind(null, /*! ../../components/bw-swiper/bw-swiper.vue */ 51));};var circlePercent = function circlePercent() {return __webpack_require__.e(/*! import() | components/circle-percent/circle-percent */ "components/circle-percent/circle-percent").then(__webpack_require__.bind(null, /*! ../../components/circle-percent/circle-percent.vue */ 58));};var indexList = function indexList() {return __webpack_require__.e(/*! import() | components/index-list */ "components/index-list").then(__webpack_require__.bind(null, /*! ../../components/index-list.vue */ 65));};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -181,7 +200,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       isLogin: false,
       screenRatio: 0.75, //可使用屏幕宽高比,默认为 0.75
-      swiperList: [{
+      swiperList: [{ //轮播图列表
         img: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1134399666,668654079&fm=26&gp=0.jpg',
         text: '测试图片' },
 
@@ -194,19 +213,33 @@ __webpack_require__.r(__webpack_exports__);
         text: '测试图片' }],
 
 
-      accuracy: 0 };
+
+      iconList: {
+        'paper': 'https://7465-test-8qygl-1256811657.tcb.qcloud.la/icon/paper.png?sign=ef869141b7c0fc4b90a9972e1b7606ad&t=1584522482',
+        'papera': 'https://7465-test-8qygl-1256811657.tcb.qcloud.la/icon/papera.png?sign=6cf84851c6ca31580e37d007dc4be293&t=1584452210',
+        'paperb': 'https://7465-test-8qygl-1256811657.tcb.qcloud.la/icon/paperb.png?sign=d76b3de1c2d4c99ceec0675e79735aeb&t=1584452235',
+        'paperc': 'https://7465-test-8qygl-1256811657.tcb.qcloud.la/icon/paperc.png?sign=c1f3920376fa88580af5029fb0ead2ba&t=1584452257',
+        'paperd': 'https://7465-test-8qygl-1256811657.tcb.qcloud.la/icon/paperd.png?sign=fcccc17756301f7ab747352889c3b014&t=1584453309',
+        'message': 'https://7465-test-8qygl-1256811657.tcb.qcloud.la/icon/message.png?sign=58562c07fbf77ee39b486b8dd81a0d15&t=1584522254' },
+
+      accuracy: '20', //正确率
+      problemNum: 0,
+      paperNum: 0 };
 
   },
   components: {
     bwSwiper: bwSwiper,
-    circlePercent: circlePercent },
+    circlePercent: circlePercent,
+    indexList: indexList },
 
   onLoad: function onLoad() {var _this = this;
     //初始化云函数
-    // wx.cloud.init({
+
+    // wx.cloud.init({//初始化微信云开发sdk实例
     // 	traceUser: true,
     // 	env: 'test-8qygl'
     // })
+
 
     //测试进度条
     var i = 0; //需要变量来转换给this.loadPercent，否则满足条件无法clearInterval。
@@ -215,7 +248,7 @@ __webpack_require__.r(__webpack_exports__);
         clearInterval(timer);
       } else {
         i++;
-        _this.accuracy = i;
+        _this.accuracy = String(i);
       }
     }, 10);
   },
@@ -238,6 +271,11 @@ __webpack_require__.r(__webpack_exports__);
     goLogin: function goLogin() {
       uni.navigateTo({
         url: '../login/login' });
+
+    },
+    goPaperList: function goPaperList() {
+      uni.navigateTo({
+        url: '../paperList/paperList' });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! (webpack)/buildin/global.js */ 3), __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

@@ -24,6 +24,25 @@
 				"navigationBarTitleText": "登录"				
 			}
         }
+        ,{
+            "path" : "pages/paperList/paperList",
+            "style" : {
+				"navigationBarTitleText": "我的试卷"	,
+				"usingComponents":{
+					//#ifdef MP-WEIXIN
+					"van-collapse": "/wxcomponents/vant-weapp/collapse/index",
+					"van-collapse-item": "/wxcomponents/vant-weapp/collapse-item/index"
+					//#endif
+				}
+				
+			}
+        }
+        ,{
+            "path" : "pages/paperListItem/paperListItem",
+            "style" : {
+				"navigationBarTitleText": "我的试卷"
+			}
+        }
     ],
 	"tabBar": {
 	    "color": "#7a7e83",

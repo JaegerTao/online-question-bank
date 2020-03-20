@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "考试",
-  "usingComponents": {}
+  "usingComponents": {
+    "exams-list": "/components/examination-paper-list",
+    "questions-list": "/components/question-options"
+  }
 }
