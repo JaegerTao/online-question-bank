@@ -6076,4 +6076,7 @@ page {
     font-size: 28rpx;
     line-height: 1.8;
 }
+checkbox .wx-checkbox-input{
+	border-radius: 50%;
+}
 

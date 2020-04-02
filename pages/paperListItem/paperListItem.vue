@@ -17,8 +17,8 @@
 	export default {
 		data() {
 			return {
-				paperItemList:[
-					{
+				paperVipNo: 0,
+				paperItemList: [{
 						paperName: '2020年5月企业人力资源管理师一级理论模拟题(一)',
 						paperID: '001'
 					},
@@ -38,7 +38,34 @@
 			}
 		},
 		methods: {
-			goExam(){
+			onLoad(e) {
+				console.log(e.VipNo);
+				uni.request({
+					url: 'http://localhost:8084/funcQuestion/TestList/getTestList',
+					
+					data: {
+						page: 1,
+						vipNo: '',
+						PageSize: 12
+					},
+					dataType: json,
+					header: {
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					complete: (res) => {
+						console.log('complete' + res);
+					},
+					success: (res) => {
+						console.log(res);
+					}
+				})
+			},
+
+			onShow() {
+
+			},
+
+			goExam() {
 				uni.navigateTo({
 					url: '../exam/exam',
 					success: res => {},
@@ -51,10 +78,11 @@
 </script>
 
 <style>
-	.paperName{
+	.paperName {
 		margin-left: 20rpx;
 	}
-	.cu-btn{
+
+	.cu-btn {
 		width: 250rpx;
 	}
 </style>

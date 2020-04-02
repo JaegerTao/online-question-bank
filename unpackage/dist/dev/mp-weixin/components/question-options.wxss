@@ -329,45 +329,22 @@
                 transform: translateX(0)
 }
 }
-.scoreText1 {
-  font-size: 25px;
-  text-align: center;
-  margin-top: 50px;
-}
-.scoreText2 {
-  font-size: 25px;
-  margin-top: 20px;
-  text-align: center;
-}
-.scoreBtn .againBtn {
-  display: block;
-  text-align: center;
-  width: 100px;
-  height: 40px;
-  margin-top: 220px;
-  scale: 0.9;
-}
-.red {
-  color: #fff;
-  background-color: #FF3333;
-  border-radius: 50%;
-}
-.green {
-  color: #fff;
-  background-color: #1AAD19;
-  border-radius: 50%;
+.windownBtn {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  position: fixed;
+  width: 85%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  bottom: 10%;
 }
 .windownBtn .leftBtn {
-  float: left;
-  left: 40px;
-  top: 260px;
-  scale: 0.7;
+    margin: auto 60rpx;
 }
 .windownBtn .rightBtn {
-  float: right;
-  right: 40px;
-  top: 260px;
-  scale: 0.7;
+    margin: auto 60rpx;
 }
 .content {
   position: relative;
@@ -379,17 +356,30 @@
     margin: 20rpx 0;
     font-size: 32rpx;
 }
+.content .type .material {
+      margin: 20rpx 20rpx;
+      display: inline;
+}
 .content .type .span:last-child {
       float: right;
       right: 0rpx;
 }
 .tabbarPos {
-  margin-bottom: 10px;
+  margin-bottom: 10rpx;
 }
-.btnPos {
-  position: absolute;
-  bottom: 80px;
-  left: 45%;
+.btnPos .btnChild {
+  width: 160rpx;
+  height: 80rpx;
+  bottom: calc(env(safe-area-inset-bottom) / 2);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
 }
 page {
   background-color: #FFFFFF;

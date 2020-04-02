@@ -5,7 +5,8 @@
     "pages/exam/exam",
     "pages/login/login",
     "pages/paperList/paperList",
-    "pages/paperListItem/paperListItem"
+    "pages/paperListItem/paperListItem",
+    "pages/exam/questionDetails/questionDetails"
   ],
   "subPackages": [],
   "window": {

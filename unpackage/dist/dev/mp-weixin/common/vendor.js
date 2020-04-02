@@ -754,7 +754,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1548,34 +1548,6 @@ wx.createComponent = createComponent;
 var uni$1 = uni;var _default =
 
 uni$1;exports.default = _default;
-
-/***/ }),
-
-/***/ 103:
-/*!**************************************************************************************************!*\
-  !*** C:/Users/14305/Documents/HBuilderProjects/online-question-bank/pages/exam/questionBanks.js ***!
-  \**************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var data = [
-[
-{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
-{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
-{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
-{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
-{ "title": "什么美国要限制华为？", "type": 5, "optionList": [{ "id": "", "content": "" }], "answer": "", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 }],
-
-[
-{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
-{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
-{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
-{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
-{ "title": "什么美国要限制华为？", "type": 5, "optionList": [{ "id": "", "content": "" }], "answer": "", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 }]];var _default =
-
-
-data;exports.default = _default;
 
 /***/ }),
 
@@ -7232,7 +7204,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7253,14 +7225,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7336,7 +7308,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -7759,6 +7731,137 @@ try {
 
 module.exports = g;
 
+
+/***/ }),
+
+/***/ 37:
+/*!**************************************************************************************************!*\
+  !*** C:/Users/14305/Documents/HBuilderProjects/online-question-bank/pages/exam/questionBanks.js ***!
+  \**************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var data = [
+[
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 }],
+
+[
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 5, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+
+{ "title": "电流分有？", "type": 2, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 },
+{ "title": "水是液体？", "type": 1, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "酸菜鱼的味道？", "type": 3, "optionList": [{ "id": "A", "content": "咸味" }, { "id": "B", "content": "辣味" }, { "id": "C", "content": "甜味" }, { "id": "D", "content": "酸味" }], "answer": "ABD", "userAnswer": "", "userFavor": false, "explain": "你怎么想都行，要的就是这个味，答案只能选A,B,D", "score": 20 },
+{ "title": "床前（____）光，疑是地上霜。", "type": 4, "optionList": [{ "id": "", "content": "" }], "answer": "明月", "userAnswer": "", "userFavor": false, "explain": "问答题没有选项，无法做答，且不参与计分", "score": 20 },
+{ "material": "日常事务接待是指对平时来机关单位办理各种具体业务、事务的各类人员的接待工作。这种接待时间短，务实性强，看似平常琐碎，但处理不好就有可能会影响单位的声誉和形象，这就要求有关人员必须了解和掌握日常接待的一般内容和环节。阅读以上材料，回答1-7题：", "title": "水是液体？", "type": 5, "optionList": [{ "id": "A", "content": "对" }, { "id": "B", "content": "错" }], "answer": "A", "userAnswer": "", "userFavor": false, "explain": "难到是固体不成？", "score": 20 },
+{ "title": "电流分有？", "type": 5, "optionList": [{ "id": "A", "content": "直流" }, { "id": "B", "content": "交流" }, { "id": "C", "content": "直流和交流" }], "answer": "C", "userAnswer": "", "userFavor": false, "explain": "科技学依据", "score": 20 }]];var _default =
+
+
+data;exports.default = _default;
 
 /***/ }),
 
@@ -8680,7 +8783,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "人才培训小程序", "usingComponents": { "bw-swiper": "/components/bw-swiper/bw-swiper", "circle-percent": "/components/circle-percent/circle-percent", "index-list": "/components/index-list" }, "usingAutoImportComponents": {} }, "pages/personalcenter/personalcenter": { "navigationBarTitleText": "我的", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/exam/exam": { "navigationBarTitleText": "考试", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/login/login": { "navigationBarTitleText": "登录", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/paperList/paperList": { "navigationBarTitleText": "我的试卷", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/paperListItem/paperListItem": { "navigationBarTitleText": "我的试卷", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "人才培训小程序", "usingComponents": { "bw-swiper": "/components/bw-swiper/bw-swiper", "circle-percent": "/components/circle-percent/circle-percent", "index-list": "/components/index-list" }, "usingAutoImportComponents": {} }, "pages/personalcenter/personalcenter": { "navigationBarTitleText": "我的", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/exam/exam": { "navigationBarTitleText": "考试", "usingComponents": { "paper-detail": "/components/paper-detail", "questions-list": "/components/question-options" }, "usingAutoImportComponents": {} }, "pages/login/login": { "navigationBarTitleText": "登录", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/paperList/paperList": { "navigationBarTitleText": "我的试卷", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/paperListItem/paperListItem": { "navigationBarTitleText": "我的试卷", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/exam/questionDetails/questionDetails": { "navigationBarTitleText": "练习报告" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 

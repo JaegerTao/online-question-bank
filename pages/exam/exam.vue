@@ -1,20 +1,18 @@
 <template>
 	 <view class="content">
-		 <view class="bankList" v-if="showExams">
-		 	<view>
-		 		<text>题库列表</text>
-		 	</view>
+		 <view class="paperDetail" v-if="showExams">
+		 	<text class="text-blue">试卷详情</text>
+			<paperDetail ></paperDetail>
 		 </view>
-		 <!--这里没有拿到题库名称，所以以一个数组中文字代替，后期更换-->
-		<examsList   v-if="showExams" v-for="(item,index) in arr" :key='index' :bankName='item.name' :value='index' ></examsList>
+		
 		<!--传输题库的第几套题，由点击事件传递参数-->	
-		<questionsList v-if="showQues" :bankQues="questionDatas[bankNo]" :vaue="bankNo"></questionsList>
+		<questionsList v-if="showQues" :bankQues="questionDatas[bankNo]" :value="bankNo" :showAnswer='showAnswer' :index='questionIndex'></questionsList>
 	</view>
 </template>
 
 <script>
 	//引入试卷样式组件
-	import examsList from '../../components/examination-paper-list.vue';
+	import paperDetail from '../../components/paper-detail.vue';
 	//引入题目样式
 	import questionsList from '../../components/question-options.vue';
 	//引入题目数据
@@ -24,18 +22,30 @@
 			return {
 				//得到的题库数据
 				questionDatas:questionDatas,
-				arr:[
-					{name:'题库一'},
-					{name:'题库二'}
-				],
+				paperDetails:{
+					name : '试卷名',
+					qNum : 0,
+					
+				},
 				bankNo:0,
 				//是否展示题库页
 				showExams:true,
 				//是否展示答题页
-				showQues:false
+				showQues:false,
+				showAnswer:false,
+				questionIndex:0,//初始展示题目的序号
 			}
 		},
-		onLoad() {
+		onLoad(data) {
+			console.log(data);
+			 if(data.showAnswer||data.value >= 0){
+				console.log('jonin')
+				this.showAnswer = data.showAnswer;
+				this.showExams = false;
+				this.showQues = true;
+				this.bankNo = data.value;
+				this.questionIndex = data.index;
+			}
 			uni.$on("enterExam",(res)=>{
 				console.log(res);
 				//题库界面隐藏
@@ -55,12 +65,18 @@
 		},
 		//页面跳转刷新
 		onShow() {
-			this.showExams = true;
-			this.showQues = false;
+			// this.showExams = true;
+			// this.showQues = false;
+		},
+		onBackPress() {
+			console.log("click")
+			//this.showUpWindow = "showUpWindow";
+			//才表示不执行默认的返回，自行处理此时的业务逻辑
+			return true;
 		},
 		//组件注册
 		components:{
-			examsList,
+			paperDetail,
 			questionsList
 		},
 		methods: {
@@ -70,11 +86,11 @@
 </script>
 
 <style lang="scss">
-	.bankList{
-		margin-top: 10px;
+	.paperDetail{
+		margin-top: 10rpx;
 		text-align: center;
 		text{
-			font-size: 20px;
+			font-size: 50rpx;
 			text-align: center;
 		}
 	}

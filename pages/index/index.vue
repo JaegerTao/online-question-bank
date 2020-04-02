@@ -33,8 +33,8 @@
 			</view>
 			
 			<view class="indexList">
-				<indexList class="listItem" title="我的试卷" :icon="iconList.paper" iconSize='100' @tap='goPaperList'></indexList>
-				<indexList class="listItem1" title="我的错题" :icon="iconList.paperb" iconSize='80' subHead="针对曾经错误的考点进行测试"></indexList>
+				<indexList class="listItem" title="我的试卷" :icon="iconList.paperb" iconSize='80' @tap='goPaperList'></indexList>
+				<indexList class="listItem1" title="我的错题" :icon="iconList.paper" iconSize='100' subHead="针对曾经错误的考点进行测试"></indexList>
 				<indexList class="listItem2" title="做题记录" :icon="iconList.papera" iconSize='90' subHead="查看我的历史做题记录"></indexList>
 				<indexList class="listItem3" title="消息中心" :icon="iconList.message" iconSize='90' subHead="查看我的消息"></indexList>
 			</view>

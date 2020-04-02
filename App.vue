@@ -53,4 +53,7 @@
 	    font-size: 28upx;
 	    line-height: 1.8;
 	}
+	checkbox .wx-checkbox-input{
+		border-radius: 50%;
+	}
 </style>

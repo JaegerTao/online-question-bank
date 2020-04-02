@@ -1,8 +1,8 @@
 <!-- 题目及选项组件 -->
 <template>
 	<view>
-		<!--答题主界面-->
-		<view class="content">
+		<!--答题页码界面-->
+		<view  id="top-box" class="content">
 			<!--题目编号区域-->
 			<view class="type">
 				<!-- <text class="span">第{{page_index+1}}题-{{type}}</text> -->
@@ -10,26 +10,20 @@
 				<text v-else-if="currentType===2" class="span">第{{page_index+1}}题-[单选题]</text>
 				<text v-else-if="currentType===3" class="span">第{{page_index+1}}题-[多选题]</text>
 				<text v-else-if="currentType===4" class="span">第{{page_index+1}}题-[填空题]</text>
-				<text v-else-if="currentType===5" class="span">第{{page_index+1}}题-[问答题]</text>
+				<text v-else-if="currentType===5" class="span">第{{page_index+1}}题-[综合单选题]</text>
+				<view v-if="currentType===5" class="material">
+					<button class="cu-btn round bg-green" @click="ShowMaterial">材料</button>
+				</view>
 				<text class="span">{{page_index+1}}/{{count}}</text>
 			</view>
-			<!--得分区域-->
-			<view class="cu-modal" :class="showAllUpWindow=='showAllUpWindow'?'show':''" @tap="hideUpWindow">
+		</view>
+		<!--题目界面-->
+		<view>
+			<!--综合题材料区域-->
+			<view class="cu-modal" :class="showMaterial=='showMaterial'?'show':''" @tap="hideUpWindow">
 				<view class="cu-dialog" @tap.stop>
 					<view class="page padding" :style="{'height': swiperHeight}">
-						<view class="scoreText1">
-							<text>得分：{{score}}</text>
-						</view>
-						<view class="scoreText2">
-							<text v-if="score < 60">不及格</text>
-							<text v-else-if=" score >= 60 && score < 70">及格</text>
-							<text v-else-if=" score >= 70 && score < 80">良好</text>
-							<text v-else-if=" score >= 80 && score < 90">优秀</text>
-							<text v-else-if=" score >= 90 && score <= 100">Prefect</text>
-						</view>
-						<view class="scoreBtn">
-							<button type="primary" class="againBtn" @click="againAnswer">再做一次</button>
-						</view>
+						<text>{{question.material}}</text>
 					</view>
 				</view>
 			</view>
@@ -37,21 +31,25 @@
 			<view class="cu-modal" :class="showUpWindow=='showUpWindow'?'show':''" @tap="hideUpWindow">
 				<view class="cu-dialog" @tap.stop>
 					<view class="page padding" :style="{'height': swiperHeight}">
-						<scroll-view class="page padding" :scroll-y=true :style="{'height':swiperHeight/4}" >
+						<scroll-view class="page padding" :scroll-y=true :style="{'height':swiperHeight/2}" >
 							<view class="cu-bar solid-bottom">
 								<view class="action">
 									<text class="cuIcon-title text-red"></text>剩余答题：
 								</view>					
 							</view>
 							<view class="grid col-5 ">
-								<view class="margin-tb-sm text-center" v-for="(items,index) in questionData" :key="index" v-if="items.userFavor == false">
+								<view class="margin-tb-sm text-center" v-for="(items,index) in questionData" :key="index" v-if="items.userAnswer.length === 0">
 									<button class="cu-btn round" @click="AppointedSubject(index)" >{{index+1}}</button>
 								</view>
 							</view>
 						</scroll-view>
 						<view class="windownBtn">
-							<button type="primary" class="leftBtn" @click="returnAnswer">返回答题</button>
-							<button type="primary" class="rightBtn" @click="confimSend">提交试卷</button>
+							<button type="primary" class="cu-btn round bg-green leftBtn" @click="returnAnswer">
+								返回答题
+							</button>
+							<button type="primary" class="cu-btn round bg-green rightBtn" @click="confimSend">
+								提交试卷
+							</button>
 						</view>	
 					</view>
 				</view>
@@ -68,7 +66,7 @@
 					</view>
 					<view class="grid col-5 ">
 						<view class="margin-tb-sm text-center" v-for="(items,index) in questionData" :key="index" >
-							<button class="cu-btn round" :class="items.userAnswer.length===0?'line-grey':'bg-red'" @click="AppointedSubject(index)" >{{index+1}}</button>
+							<button class="cu-btn round" :class="items.userAnswer.length===0?'line-grey':'bg-green'" @click="AppointedSubject(index)" >{{index+1}}</button>
 						</view>
 					</view>
 					
@@ -78,7 +76,7 @@
 			<!--轮播界面，即题目列表-->
 			<swiper :current="page_index" class="swiper-box" @change="SwiperChange" :style="{'height':swiperHeight}">
 				<swiper-item v-for="(item,index) in questionData" :key="index">
-					<view class="" >
+					<view scroll-y="true" class="scroll_content" >
 						<!--标题栏-->
 						<view class="cu-bar bg-white solid-bottom">
 							<view class="action text-black">
@@ -88,8 +86,7 @@
 						<!--单选框-->
 						<radio-group class="block"  @change="RadioboxChange" v-if="currentType===1|| currentType===2">
 							<view class="cu-form-group" v-for="(option,index) in question.optionList" :key="index">
-								<radio :value="option.id" :checked="question.userAnswer.indexOf(option.id) > -1?true:false" 
-								:class="showAnswer!==true ? '':(option.id === question.answer ? 'green':(question.userAnswer === option.id)?'red':'') "></radio> 
+								<radio :value="option.id" :checked="question.userAnswer.indexOf(option.id) > -1?true:false"></radio> 
 								<view class="title text-black">{{option.id}}.{{option.content}}</view>
 							</view>
 						</radio-group>
@@ -97,23 +94,21 @@
 						<checkbox-group class="block"  @change="CheckboxChange" v-else-if="currentType===3">
 							<view class="cu-form-group" v-for="(option,index) in question.optionList" :key="index">
 								<!--check样式必须设置在App.vue中才能起效果-->
-								<checkbox class="wx-checkbox-inpu" :value="option.id" 
-								:class="showAnswer === false? (question.userAnswer.indexOf(option.id) > -1 ?'checked':''):(question.userAnswer.indexOf(option.id) > -1 && question.answer.indexOf(option.id) ==-1 ?'red':'green')"
-								:checked="showAnswer === false? (question.userAnswer.indexOf(option.id) > -1?true:false):(question.answer.indexOf(option.id) > -1 || question.userAnswer.indexOf(option.id) > -1?true:false)"></checkbox>
+								<checkbox class="wx-checkbox-input" :value="option.id" 
+								:class="question.userAnswer.indexOf(option.id) > -1?'checked':''" :checked="question.userAnswer.indexOf(option.id) > -1?true:false"></checkbox>
 								<view class="title text-black">{{option.id}}.{{option.content}}</view>
 							</view>
 						</checkbox-group>
 						<!--单行输入框-->
-						<view v-else-if="currentType===4">
+						<!-- <view v-else-if="currentType===4">
 							<view class="cu-form-group solid-bottom">
 								<view class="title  text-black">
 									答：
 								</view>
 								<input placeholder="文本输入框" name="input" v-model="question.userAnswer" @blur="textInput" ></input>
 							</view>
-						</view>
-						<!--多行文本输入框-->
-						<view v-else-if="currentType===5">
+						</view> -->
+ 						<view v-else-if="currentType===4">
 							<view class="cu-bar cu-bar-title bg-white margin-top">
 								<view class="action  text-black">
 									答：
@@ -123,8 +118,17 @@
 								<textarea maxlength="-1"  @blur="textInput" v-model="question.userAnswer" placeholder="多行文本输入框"></textarea>
 							</view>
 						</view>
+						<!--综合单选题-->
+						<view v-else-if="currentType===5">
+							<radio-group class="block"  @change="RadioboxChange">
+								<view class="cu-form-group" v-for="(option,index) in question.optionList" :key="index">
+									<radio :value="option.id" :checked="question.userAnswer.indexOf(option.id) > -1?true:false"></radio> 
+									<view class="title text-black">{{option.id}}.{{option.content}}</view>
+								</view>
+							</radio-group>
+						</view>
 						<!--解析展示-->
-						<view v-show="showAnswer" class="margin-top solid-top">
+						<view v-show="showAnswer" class="margin-top solid-top ">
 							<view class="cu-bar">
 								<view class="action  text-grey">
 									<text>正确答案：</text>
@@ -145,15 +149,8 @@
 				</swiper-item>
 			</swiper>
 		</view>
-		<!--按钮操作界面-->
-		<!--答题确定按钮-->
-		<view class="btnPos">
-				<button type="primary" @click="confim" class="btnChild">
-					<text>确定</text>
-				</button>
-		</view>
 		<!--自定义tabbar界面，下层点击按钮-->
-		<view class="cu-bar tabbar bg-white shadow foot tabbarPos">
+		<view id="foot-box" class="cu-bar tabbar bg-white shadow foot tabbarPos">
 			<view @click="pre" class="action" >
 				<view class="cuIcon-cu-image">
 					<text class="lg cuIcon-back text-gray"></text>
@@ -166,8 +163,8 @@
 				</view>
 				<view class="text-gray">下一题</view>
 			</view>
-			<view class="action" >
-				<view class="cuIcon-cu-image" @click="sendPaper">
+			<view class="action" v-if="isShowAnswer===false">
+				<view class="cuIcon-cu-image" @click="SendPaper">
 					<text class="lg text-gray cuIcon-upload"></text>
 				</view>
 				<view class="text-gray">交卷</view>
@@ -194,18 +191,47 @@
 				currentType:0,//代表样式的数字
 				modalCard:null,//显示答题卡
 				swiperHeight:'460px',//答题卡界面高度,以及弹窗高度
-				showAnswer:false,//是否显示解析
+				isNextQues:false,//是否自动下一题
 				showUpWindow:null,//显示提示窗口（未答题完）
-				showAllUpWindow:null,//显示提示窗口，（已经答完）
+				showMaterial:null,//显示综合题材料窗口
+				isShowAnswer:false,
+				Value:0,//题库的第几套题目列表
+				//开始时间
+				startTime:{
+					hour:0,
+					minute:0,
+					second:0
+				},
+				//结束时间
+				endIime:{
+					hour:0,
+					minute:0,
+					second:0
+				}
 			};
 		},
 		onLoad() {
 			
 		},
 		onReady() {	
+			//初始清空时间列表
+			this.setCurrentTime({},-1);
+			//获取当前时间,并按照传参进行开始或者结束时间赋值
+			var nowTime = this.getCurrentTime();
+			this.setCurrentTime(nowTime,0);
+			//获取scrollview的高度
+			this.getScrollHeight();
 			//将传递的数据用本地变量存储
 			this.questionData = this.bankQues;
+			//初始时是否直接加载题目解析
+			this.isShowAnswer = this.showAnswer;
+			//题库列表
+			this.Value = this.value;
 			console.log(JSON.stringify(this.questionData));
+			console.log(JSON.stringify(this.isShowAnswer));
+			console.log(this.Value);
+			//初始的题目序号
+			this.page_index = parseInt(this.index);
 			this.question = this.questionData[this.page_index];
 			this.count = this.questionData.length;
 			this.currentType = this.question.type;
@@ -214,31 +240,124 @@
 		//页面中不能直接调取传递的变量
 		props:{
 			bankQues:{},
-			vaue:0
+			value:0,
+			showAnswer:false,
+			index:0,
 		},
 		methods:{
-			//答题确认
-			confim:function(){
-				//当前题目还未作答，并且此时题目的答案与作答的一致，总分数递增
-				if(!this.question.userFavor&&this.question.answer === this.question.userAnswer){
-					this.score += this.question.score;
-					console.log(this.score);
+			//获取当前时间戳转化为对应时间
+			getCurrentTime:function(){
+				let date = new Date();
+				//分别获取时分秒
+				let hour = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+				let	minute = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+				let	second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+				console.log(hour+':'+minute+':'+second);
+				var currentTime={
+					hour:hour,
+					minute:minute,
+					second:second
+				};
+				//获取当前时间戳
+				// var time = (new Date()).getTime();
+				// console.log('time=='+time/1000);
+				//返回当前时间
+				return currentTime;
+			},
+			setCurrentTime:function(nowTime,index){
+				//index==0处理开始时间，为1处理结束时间,-1为清空
+				if(index===0){
+					this.startTime.hour = nowTime.hour;
+					this.startTime.minute = nowTime.minute,
+					this.startTime.second = nowTime.second;
 				}
-				if(!this.showAnswer){
-					this.showAnswer = true;
-					//点击确认表示此题已经作答
-					this.questionData[this.page_index].userFavor = true;
-						//自动跳转到下一题
-						// setInterval(()=>{
-						// 		if(this.page_index < this.count - 1 && this.showAnswer == true){
-						// 			this.page_index++;
-						// 			this.question = this.questionData[this.page_index];
-						// 			this.currentType = this.question.type;
-						// 			this.userFavor = this.question.userFavor;
-						// 			this.showAnswer = false;
-						// 		}	
-						// 	},1500);
+				else if(index===1){
+					this.endIime.hour = nowTime.hour;
+					this.endIime.minute = nowTime.minute;
+					this.endIime.second = nowTime.second;
+				}
+				else if(index===-1){
+					this.startTime.hour = 0;
+					this.startTime.minute = 0
+					this.startTime.second = 0;
+					this.endIime.hour = 0;
+					this.endIime.minute = 0;
+					this.endIime.second = 0;
+				}
+			},
+			//获取开始时间到交卷时间的时间间隔
+			getTimelag:function(){
+				var lagTime = {
+					hour:0,
+					minute:0,
+					second:0
+				};
+				if(this.endIime.hour<this.startTime.hour){
+					this.endIime.hour += 24;
+				}
+				lagTime.hour = this.endIime.hour - this.startTime.hour;
+				lagTime.minute = this.endIime.minute - this.startTime.minute;
+				lagTime.second = this.endIime.second - this.startTime.second;
+				if(lagTime.second < 0){
+					lagTime.second += 60;
+					lagTime.minute -= 1;
+				}
+				if(lagTime.minute < 0){
+					lagTime.minute += 60;
+					lagTime.hour -=1;
+				}
+				if(lagTime.hour<0){
+					console.log('time error');
+				}
+				return lagTime;
+			},
+			//动态获取scrollview的高度
+			getScrollHeight:function(){
+				//初始是处理屏幕的高度
+				var tempHeight = 800;
+				var _self = this;
+				uni.getSystemInfo({
+					//获取手机屏幕高度信息，让swiper的高度和手机屏幕一样高                
+					success: function(res) {                   
+						tempHeight = res.windowHeight;
+						console.log("屏幕可用高度 " + JSON.stringify(res));
+						//在组件内获取id，需要加in(this),此处使用—_self代替了this
+						uni.createSelectorQuery().in(_self).select("#top-box").fields({
+							size: true,
+							scrollOffset: true
+						}, (data) => {
+							//console.log("屏幕数据 " + data);
+							tempHeight -= data.height;
+							//console.log("减掉顶部后的高度 " + tempHeight);
+							uni.createSelectorQuery().in(_self).select("#foot-box").fields({
+								size: true,
+								scrollOffset: true
+							}, (data) => {
+								tempHeight -= data.height;
+								//console.log("减掉底部后的高度 " + tempHeight);
+								_self.swiperHeight = tempHeight + 'px';
+								//console.log("滑屏最后高度 " + _self.swiperHeight);
+							}).exec();
+						}).exec();
+					},
+					fail() {
+						
 					}
+				});
+			},
+			//自动跳转下一题
+			nextQues:function(){
+				if(this.isNextQues){
+					setInterval(()=>{
+						if(this.page_index < this.count - 1 && this.isNextQues === true){
+							this.page_index++;
+							this.question = this.questionData[this.page_index];
+							this.currentType = this.question.type;
+							this.userFavor = this.question.userFavor;
+							this.isNextQues = false;
+						}
+					},500);
+				}
 			},
 			//下一题
 			next:function(){
@@ -246,7 +365,6 @@
 					this.page_index++;
 					this.question = this.questionData[this.page_index];
 					this.currentType = this.question.type;
-					this.showAnswer = false;
 				}	
 			},
 			//上一题
@@ -255,7 +373,6 @@
 					this.page_index--;
 					this.question = this.questionData[this.page_index];
 					this.currentType = this.question.type;
-					this.showAnswer = false;
 				}	
 			},
 			//显示答题卡
@@ -272,21 +389,37 @@
 			},
 			//在弹出窗口的确认交卷
 			confimSend:function(){
-				//显示得分区域
-				this.showAllUpWindow = "showAllUpWindow";
-				this.showUpWindow = null;
+				//获取当前时间,并按照传参进行开始或者结束时间赋值
+				var nowTime = this.getCurrentTime();
+				this.setCurrentTime(nowTime,1);
+				var lagTime = this.getTimelag();
+				var currentTime = JSON.stringify(lagTime);
+				console.log('time='+JSON.stringify(lagTime));
+				//跳转到答题详情界面
+				var questionData = JSON.stringify(this.questionData);
+				uni.navigateTo({
+					url:"./questionDetails/questionDetails?questionData="+questionData+'&value='+this.Value+'&time='+currentTime,
+					success:(res)=> {
+						console.log('success');
+					},
+					fail(res) {
+						console.log(res);
+					},
+				});
+				//this.showUpWindow = null;
 			},
 			//隐藏交卷窗口
 			hideUpWindow:function(){
 				this.showUpWindow = null;
 				this.showAllUpWindow = null;
+				this.showMaterial = null;
 			},
 			//答题界面提交试卷
-			sendPaper:function(){
+			SendPaper:function(){
 				var sum=0;
 				for (var i = 0; i < this.questionData.length; i++) {
-					console.log(this.questionData[i].userFavor);
-					if(this.questionData[i].userFavor === false){
+					console.log(this.questionData[i].userAnswer);
+					if(this.questionData[i].userAnswer.length === 0){
 						sum=1;
 						break;
 					}
@@ -295,7 +428,18 @@
 					this.showUpWindow = "showUpWindow";
 				}
 				else{
-					this.showAllUpWindow = "showAllUpWindow";
+					//获取当前时间,并按照传参进行开始或者结束时间赋值
+					var nowTime = this.getCurrentTime();
+					this.setCurrentTime(nowTime,1);
+					var lagTime = this.getTimelag();
+					var currentTime = JSON.stringify(lagTime);
+					var questionData = JSON.stringify(this.questionData);
+					uni.navigateTo({
+						url:"./questionDetails/questionDetails?questionData="+questionData+'&value='+this.Value+'&time='+currentTime,
+						success:(res)=> {
+							console.log('success');
+						},
+					})
 				}
 			},
 			//滑动屏幕事件
@@ -307,7 +451,6 @@
 					this.question = this.questionData[this.page_index];
 					this.currentType = this.question.type;
 					this.userFavor = this.question.userFavor;	
-					this.showAnswer = false;
 				}	
 			},
 			//单选选中
@@ -317,11 +460,13 @@
 				var values = e.detail.value;
 				//将答案记录下来
 				this.questionData[this.page_index].userAnswer = values;
-				
+				console.log(values);
+				this.questionData[this.page_index].userFavor = true;
+				this.isNextQues = true;
+				this.nextQues();
 			},
 			//复选选中
-			CheckboxChange: function(e) { 
-			
+			CheckboxChange: function(e) { 		
 				var items = this.questionData[this.page_index].optionList;
 				var values = e.detail.value;
 				this.questionData[this.page_index].userAnswer = "";
@@ -334,10 +479,12 @@
 						}
 					}
 				}
+				this.questionData[this.page_index].userFavor = true;
 			},
 			//填空题
 			textInput : function(e) { 
 				this.questionData[this.page_index].userAnswer = e.detail.value;
+				this.questionData[this.page_index].userFavor = true;
 			},
 			//在题目列表中题目跳转
 			AppointedSubject:function(index){
@@ -345,7 +492,6 @@
 				this.question = this.questionData[this.page_index];
 				this.currentType = this.question.type;
 				this.userFavor = this.question.userFavor;
-				this.showAnswer = false;//不再显示解析
 				this.modalCard = null;//不展示答题卡
 				this.showUpWindow = null;//不展示交卷界面
 			},
@@ -359,6 +505,10 @@
 					this.questionData[i].userFavor = false;
 					this.questionData[i].userAnswer = "";
 				}
+			},
+			//展示综合题材料
+			ShowMaterial:function(){
+				this.showMaterial = "showMaterial";
 			}
 		}
 	}
@@ -366,45 +516,23 @@
 
 <style lang="scss">
 	@import url("../colorui/animation.css");
-	.scoreText1{
-		font-size: 25px;
-		text-align: center;
-		margin-top: 50px;
-	}
-	.scoreText2{
-		font-size: 25px;
-		margin-top: 20px;
-		text-align: center;
-	}
-	.scoreBtn .againBtn{
-		display: block;
-		text-align: center;
-		width: 100px;
-		height: 40px;
-		margin-top: 220px;
-		scale: 0.9;
-	}
-	.red{
-		color: #fff;
-		background-color: #FF3333;
-		border-radius: 50%;
-	}
-	.green{
-		color: #fff;
-		background-color: #1AAD19;
-		border-radius: 50%;
-	}
-	.windownBtn .leftBtn{
-		float: left;
-		left: 40px;
-		top: 260px;
-		scale: 0.7;
-	}
-	.windownBtn .rightBtn{
-		float: right;
-		right: 40px;
-		top: 260px;
-		scale: 0.7;
+	.windownBtn {
+		display: flex;
+		position: fixed;
+		width: 85%;
+		justify-content: center;
+		//border: 2upx solid red;
+		bottom: 10%;
+		.leftBtn{
+			margin: auto 60upx;
+			// float: left;
+			// left: 40upx;
+		}
+		.rightBtn{
+			margin: auto 60upx;
+			// float: right;
+			// right: 40upx;
+		}
 	}
 	.content {
 	//border: 2px solid black;
@@ -415,6 +543,10 @@
 	  .type {
 	    margin: 20upx 0;
 	    font-size: 32upx;
+		.material{
+			margin: 20upx 20upx;
+			display: inline;
+		}
 	    .span{
 	      &:last-child {
 	        float: right;
@@ -424,12 +556,19 @@
 	  }
 	 }
 	 .tabbarPos{
-		 margin-bottom: 10px;
+		 margin-bottom: 10upx;
 	 }
 	 .btnPos {
-		position: absolute;
-		bottom: 80px;
-		left: 45%;
+		 .btnChild{
+			//border: 2px solid red;
+			width:160upx;
+			height: 80upx;
+			bottom:calc(env(safe-area-inset-bottom) / 2);
+			//bottom: calc(100upx + env(safe-area-inset-bottom) / 2);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		 }
 	 }
 	 page {
 	 	background-color: #FFFFFF;
