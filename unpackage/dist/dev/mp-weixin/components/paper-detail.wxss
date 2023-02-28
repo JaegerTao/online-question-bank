@@ -47,4 +47,7 @@
   position: relative;
   top: 200rpx;
 }
+.warningText {
+  font-size: 33rpx;
+}
 

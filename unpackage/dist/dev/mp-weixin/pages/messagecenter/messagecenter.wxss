@@ -1,0 +1,31 @@
+
+.top {
+	margin-left: 15rpx;
+	margin-top: 20rpx;
+	margin-bottom: 20rpx;
+	width: 720rpx;
+	height: 80rpx;
+	text-align: center;
+	border-radius: 15rpx 15rpx 15rpx 15rpx;
+	box-shadow: 10rpx 10rpx 5rpx #e2e2e2;
+}
+.top>view {
+	font-size: 30rpx;
+	color: #a4acb6;
+}
+.topText {
+	position: absolute;
+	left: 160rpx;
+	top: 30rpx;
+}
+.DelAll {
+	position: absolute;
+	left: 500rpx;
+	top: 30rpx;
+}
+.nomessage {
+	margin-top: 30rpx;
+	width: 750rpx;
+	text-align: center;
+}
+

@@ -1,0 +1,27 @@
+
+.Item{
+	position: relative;
+	width: 150rpx;
+}
+.Icon{
+	position: absolute;
+	width: 100rpx;
+	height: 160rpx;
+	font-size: 100rpx;
+	top: -10rpx;
+}
+.Num{
+	position: absolute;
+	font-size: 30rpx;
+	text-align: center;
+	top: 125rpx;
+	width: 100rpx;
+}
+.Title{
+	position: absolute;
+	top: 170rpx;
+	font-size: 30rpx;
+	text-align: center;
+	width: 100rpx;
+}
+

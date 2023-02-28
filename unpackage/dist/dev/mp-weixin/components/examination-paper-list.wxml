@@ -1,1 +1,0 @@
-<view><view class="content"><view data-event-opts="{{[['tap',[['enterQues',['$event']]]]]}}" bindtap="__e"><view class="bankName">{{bankName}}</view></view></view><view class="distance"></view></view>

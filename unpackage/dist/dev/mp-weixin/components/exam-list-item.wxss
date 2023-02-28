@@ -1,0 +1,77 @@
+
+.Item {
+	margin-top: 20rpx;
+	position: relative;
+	width: 720rpx;
+	height: 170rpx;
+	border-bottom: 1rpx solid #b8bbbb;
+}
+.textMsg {
+	position: relative;
+}
+.title {
+	position: absolute;
+	font-size: 30rpx;
+	width: 480rpx;
+	top: 25rpx;
+	left: 30rpx;
+}
+.title2 {
+	position: absolute;
+	font-size: 25rpx;
+	width: 450rpx;
+	top: 10rpx;
+	left: 30rpx;
+}
+.examtime{
+	position: absolute;
+	font-size: 27rpx;
+	top: 90rpx;
+	left: 30rpx;
+}
+.subdate {
+	position: absolute;
+	font-size: 30rpx;
+	top: 90rpx;
+	left: 30rpx;
+}
+.qpct {
+	position: absolute;
+	font-size: 30rpx;
+	top: 90rpx;
+	left: 200rpx;
+}
+.btnMsg {
+	position: relative;
+	left: 500rpx;
+}
+.btnpos1 {
+	position: absolute;
+	height: 56rpx;
+	left: 2rpx;
+	font-size: 28rpx;
+	top: 36rpx;
+}
+.btnpos1txt {
+	position: absolute;
+	height: 56rpx;
+	left: 40rpx;
+	font-size: 30rpx;
+	text-align: center;
+	top: 36rpx;
+}
+.btnpos1btn {
+	position: absolute;
+	height: 56rpx;
+	left: 40rpx;
+	font-size: 30rpx;
+	text-align: center;
+	top: 46rpx;
+}
+.btnpos2 {
+	position: absolute;
+	height: 60rpx;
+	font-size: 30rpx;
+	top: 16rpx;
+}
+

@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "考试",
+  "navigationBarTitleText": "答题",
   "usingComponents": {
     "paper-detail": "/components/paper-detail",
     "questions-list": "/components/question-options"

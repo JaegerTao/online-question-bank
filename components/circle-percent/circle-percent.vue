@@ -1,6 +1,6 @@
 <template>
 	<view class="box">
-		<view class="boxContent">
+		<view class="boxContent" :style="{ height:(boxSize) + 'rpx', width:(boxSize) + 'rpx' }">
 			<view class="boxContent2">
 				<view class="before" :style="{top: (100-percent)+'%'}"></view>
 				<view class="jd" :style="{background: bg}"></view>
@@ -9,7 +9,7 @@
 			<view class="percent">{{percent}}%</view>
 			<view class="titleOne">{{titleOne}}</view>
 		</view>
-		<view class="atitle">{{titleTwo}}</view>
+		<view class="atitle" :style="{width: (boxSize)+'rpx'}">{{titleTwo}}</view>
 	</view>
 </template>
 
@@ -32,6 +32,10 @@
 			percent: {
 				type: String,
 				default: '80'
+			},
+			boxSize: {
+				type: String,
+				default: '230'
 			}
 		},
 		computed: {},
@@ -53,11 +57,11 @@
 
 		.boxContent {
 			position: relative;
-			width: 230upx;
-			height: 230upx;
+			width: 230rpx;
+			height: 230rpx;
 			border-radius: 50%;
 			margin: 0 auto;
-			border: 10upx solid #ffffff;
+			border: 10rpx solid #ffffff;
 			overflow: hidden;
 
 			.boxContent2 {
@@ -136,6 +140,7 @@
 			font-size: 20upx;
 			color: $uni-text-color-grey;
 			font-size: $uni-font-size-base;
+			text-align: center;
 		}
 	}
 </style>

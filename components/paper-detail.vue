@@ -4,21 +4,21 @@
 		<view class="paper">
 			<view class="paperName">{{paperName}}</view>
 			<view class="paperDetail cu-list menu">
-				<view class="openTime cu-item">
+				<!-- <view class="openTime cu-item">
 					<view class="openTimeTitle cu-btn round line-blue">开放时间</view>
-					<!-- <view class="openTimeText">{{ startTime }}--{{ endTime }}</view> -->
+					<view class="openTimeText">{{ startTime }}--{{ endTime }}</view>
 					<view class="openTimeText pText">2020.03.12 20:20-2020.03.14 20:20</view>
-				</view>
+				</view> -->
 				<view class="questionNum cu-item">
-					<view class="questionNumTitle cu-btn round line-blue">考试题数</view>
+					<view class="questionNumTitle cu-btn round line-blue">题目数量</view>
 					<view class="questionNumText pText">{{ questionNum }}</view>
 				</view>
-				<view class="chanceNum cu-item">
-					<view class="chanceNumTitle cu-btn round line-blue">剩余考试机会</view>
+				<!-- <view class="chanceNum cu-item">
+					<view class="chanceNumTitle cu-btn round line-blue">剩余做题次数</view>
 					<view class="chanceNumText pText">{{ chanceNum }}</view>
-				</view>
+				</view> -->
 				<view class="testTime cu-item">
-					<view class="testTimeTitle cu-btn round line-blue">考试时长</view>
+					<view class="testTimeTitle cu-btn round line-blue">做题时长</view>
 					<view class="testTimeText pText">{{ testTime }}分钟</view>
 				</view>
 				<view class="fullMarks cu-item">
@@ -28,12 +28,15 @@
 			</view>
 			<view class="warning">
 				<view class="warningText">
-					<view class="cuIcon-info text-center text-yellow">考试中途退出即交卷，请注意预留足够的时间</view>
+					<view v-if="testmodel=='L'" class="cuIcon-info text-center text-yellow">做题中途强制退出即交卷，<br />如须退出请保存做题进度</view>
+					<view v-else-if="testmodel=='K'" class="cuIcon-info text-center text-yellow">考试中途请不要退出或关闭小程序，<br />如果意外退出，最多等待3分钟重新进入答题</view>
 				</view>
 			</view>
 		</view>
 
-		<view class="goTestBtn cu-btn shadow radius bg-orange text-white" @click="enterQues">开始答题</view>
+		<!-- <view class="goTestBtn cu-btn shadow radius bg-orange text-white" @click="enterQues">
+			开始答题
+		</view> -->
 
 	</view>
 </template>
@@ -47,7 +50,7 @@
 		props: {
 			paperName: {
 				type: String,
-				default: '2020年5月企业人力资源管理师一级理论模拟题(一)'
+				default: ''
 			},
 			// openTime: {
 			// 	type: Date,
@@ -55,31 +58,28 @@
 			// },
 			questionNum: {
 				type: Number,
-				default: 20
+				default: 0
 			},
-			chanceNum: {
-				type: Number,
-				default: 1
-			},
+			// chanceNum: {
+			// 	type: Number,
+			// 	default: 0
+			// },
 			testTime: {
-				type: Number,
-				default: 30
+				type: String,
+				default: ""
 			},
 			fullMarks: {
 				type: Number,
-				default: 100
+				default: 0
 			},
-			value: {
-				type: Number,
-				default: 1
-			},
+			testmodel: {
+				type: String,
+				default: 'L'
+			}
+
 		},
 		methods: {
-			enterQues: function() {
-				uni.$emit('enterExam', {
-					num: this.value,
-				})
-			},
+			
 		}
 	}
 </script>
@@ -89,12 +89,15 @@
 		position: relative;
 		top: 20rpx;
 	}
-	.paper > view{
+
+	.paper>view {
 		font-size: 35rpx;
 	}
-	.pText{
+
+	.pText {
 		font-size: 30rpx;
 	}
+
 	.paperName {
 		margin-left: 50rpx;
 		width: 650rpx;
@@ -109,5 +112,9 @@
 		width: 300rpx;
 		position: relative;
 		top: 200rpx;
+	}
+	
+	.warningText{
+		font-size: 33rpx;
 	}
 </style>

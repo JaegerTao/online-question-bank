@@ -1,0 +1,1 @@
+.paperDetail{margin-top:10rpx;text-align:center}.paperDetail text{font-size:50rpx;text-align:center}.paperDetail .btnTestBtn{width:200rpx;position:relative;top:200rpx}.paperDetail .btnBackHome{width:200rpx;position:relative;top:330rpx;right:100rpx}

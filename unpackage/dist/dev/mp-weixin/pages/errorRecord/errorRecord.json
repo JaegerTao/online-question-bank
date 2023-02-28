@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "错题记录",
+  "usingComponents": {
+    "icon-text-item": "/components/icon-text-item",
+    "record-item": "/components/record-item"
+  }
+}

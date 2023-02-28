@@ -27,66 +27,66 @@
 .top {
   height: 320rpx;
   border-radius: 30rpx 30rpx 0rpx 0rpx;
-  position: absolute;
-  background: url(https://7465-test-8qygl-1256811657.tcb.qcloud.la/icon/bgTop.png?sign=c7d305fbc26275d8b1f387add552bee7&t=1584523753) repeat fixed center;
 }
 .circlePercent {
   position: absolute;
   top: 30rpx;
   left: 250rpx;
 }
+.textQuesType {
+  display: flex;
+  left: 10rpx;
+  font-weight: 600;
+  margin-bottom: 20rpx 0;
+}
 .time_score_content {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
   position: relative;
-  top: 300rpx;
+  top: 40rpx;
   padding: 10rpx 0;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
+  justify-content: space-between;
   height: 180rpx;
 }
 .time_score_content .time_part {
-    width: 33.33%;
-    border-right: 1rpx solid #C0C0C0;
-    text-align: center;
+  width: 50%;
+  border-right: 1rpx solid #C0C0C0;
+  text-align: center;
 }
 .time_score_content .time_part view:first-child {
-      font-size: 60rpx;
+  font-size: 60rpx;
 }
 .time_score_content .time_part .time_info {
-      padding: 20rpx auto;
+  padding: 20rpx auto;
 }
 .time_score_content .current_part {
-    width: 33.33%;
-    border-right: 0.3rpx solid #C0C0C0;
-    text-align: center;
+  width: 50%;
+  border-right: 0.3rpx solid #C0C0C0;
+  text-align: center;
 }
 .time_score_content .current_part view:first-child {
-      font-size: 60rpx;
+  font-size: 60rpx;
 }
 .time_score_content .score_part {
-    width: 33.33%;
-    text-align: center;
+  width: 33.33%;
+  text-align: center;
 }
 .time_score_content .score_part view:first-child {
-      font-size: 60rpx;
+  font-size: 60rpx;
 }
 .prompt_content {
   position: relative;
-  top: 360rpx;
+  top: 90rpx;
   padding: 0 40rpx;
 }
 .prompt_content .prompt_content_text {
-    display: inline;
+  display: inline;
 }
 .prompt_content .prompt_content_info {
-    display: inline;
-    padding: 0 40rpx;
+  display: inline;
+  padding-left: 16rpx;
 }
 .prompt_content .prompt_content_info text {
-      margin: 0 20rpx;
+  margin: 0 15rpx;
 }
 .scroll_content {
   border-top: 0.3rpx solid #C0C0C0;
@@ -94,20 +94,23 @@
   width: 90%;
   left: 5%;
   text-align: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
-  top: 400rpx;
+  justify-content: center;
+  top: 150rpx;
 }
 .return_content {
-  position: relative;
-  top: 540rpx;
-  border-top: 0.3rpx solid #C0C0C0;
+  display: flex;
+  position: fixed;
+  width: 100%;
+  justify-content: center;
+  bottom: 30rpx;
+  margin: 0 auto;
 }
-.return_content .btns {
-    position: fixed;
-    width: 30%;
-    bottom: 10rpx;
-    left: 270rpx;
+.return_content .btnAgain {
+  background-color: #F17E3F;
+  margin: auto 60rpx;
+}
+.return_content .btnReturn {
+  background-color: #F17E3F;
+  margin: auto 60rpx;
 }
 

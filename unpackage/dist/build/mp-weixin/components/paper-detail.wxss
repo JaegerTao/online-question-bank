@@ -1,0 +1,1 @@
+.paper{position:relative;top:20rpx}.paper > view{font-size:35rpx}.pText{font-size:30rpx}.paperName{margin-left:50rpx;width:650rpx;text-align:center}.paperDetail{position:relative}.goTestBtn{width:300rpx;position:relative;top:200rpx}.warningText{font-size:33rpx}

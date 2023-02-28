@@ -1,0 +1,129 @@
+.hm-sms-list-card {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	width: 750rpx;
+	height: 315.18rpx;
+}
+
+.box {
+	display: flex;
+	position: relative;
+	align-items: flex-start;
+	flex-direction: row;
+	justify-content: center;
+	margin-left: 16.1rpx;
+	border-radius: 32.21rpx;
+	background-color: #ffffff;
+	width: 720.09rpx;
+	height: 223.16rpx;
+	overflow: hidden;
+	border-bottom: 1rpx solid #0081FF;
+	border-top: 1rpx solid #0081FF;
+}
+
+.xueshengdangan {
+	position: absolute;
+	top: 66.72rpx;
+	left: 69.02rpx;
+	width: 82.82rpx;
+	height: 110.43rpx;
+}
+
+.primary {
+	position: relative;
+	margin-top: 46.01rpx;
+	margin-right: 34.51rpx;
+	width: 70rpx;
+	height: 65rpx;
+}
+
+.sub {
+	display: flex;
+	position: relative;
+	align-items: flex-start;
+	flex-direction: column;
+	margin-top: 36.81rpx;
+	margin-right: 29.91rpx;
+	height: 112.73rpx;
+}
+
+.outer {
+	display: flex;
+	position: relative;
+	align-items: center;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 421.01rpx;
+	height: 50.61rpx;
+}
+
+.wrap {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	height: 46.01rpx;
+}
+
+.paybak {
+	opacity: 1;
+	max-width: 220.86rpx;
+	height: 46.01rpx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 46.01rpx;
+	white-space: pre;
+	color: #34c1fe;
+	font-family: Helvetica;
+	font-size: 32.21rpx;
+	font-weight: normal;
+}
+
+.company {
+	opacity: 1;
+	max-width: 80.52rpx;
+	height: 46.01rpx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 46.01rpx;
+	white-space: nowrap;
+	color: #34c1fe;
+	font-size: 32.21rpx;
+	font-weight: 400;
+}
+
+.txt {
+	opacity: 1;
+	line-height: 46.01rpx;
+	white-space: pre;
+	color: #b3c0ce;
+	font-family: MicrosoftYaHei, Microsoft YaHei;
+	font-size: 25.31rpx;
+	font-weight: normal;
+}
+
+.block {
+	display: flex;
+	position: relative;
+	align-items: center;
+	flex-direction: row;
+	margin-top: 30rpx;
+	height: 46.01rpx;
+}
+
+.desc {
+	opacity: 1;
+	line-height: 46.01rpx;
+	width: 550rpx;
+	white-space: pre-wrap;
+	color: #15232e;
+	font-size: 25.31rpx;
+	font-weight: 400;
+}
+
+.side {
+	position: relative;
+	margin-top: 46.01rpx;
+	width: 16.1rpx;
+	height: 27.61rpx;
+}

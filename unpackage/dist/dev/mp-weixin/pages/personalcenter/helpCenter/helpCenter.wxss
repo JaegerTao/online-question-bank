@@ -1,0 +1,23 @@
+
+.title{
+	width: 750rpx;
+	text-align: center;
+	font-size: 40rpx;
+	margin-top: 20rpx;
+	margin-bottom: 10rpx;
+}
+.imgaddress{
+	width: 500rpx;
+	margin-left: 125rpx;
+}
+.intro{
+	width: 650rpx;
+	margin-left: 50rpx;
+	border-radius: 0rpx 0rpx 15rpx 15rpx;
+	box-shadow: 10rpx 10rpx 5rpx #e2e2e2;
+}
+.infoaddress{
+	width: 500rpx;
+	margin-left: 125rpx;
+}
+

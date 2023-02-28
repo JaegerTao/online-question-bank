@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "消息中心",
+  "usingComponents": {
+    "message-list-item": "/components/message-list-item"
+  }
+}

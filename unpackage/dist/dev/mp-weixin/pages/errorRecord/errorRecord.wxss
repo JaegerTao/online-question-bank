@@ -1,0 +1,32 @@
+
+.topMsg {
+	position: relative;
+	width: 730rpx;
+	left: 10rpx;
+	height: 230rpx;
+	border-radius: 15rpx 15rpx 15rpx 15rpx;
+	box-shadow: 10rpx 10rpx 5rpx #e2e2e2;
+}
+.errorNum {
+	position: absolute;
+	left: 60rpx;
+}
+.percent {
+	position: absolute;
+	left: 240rpx;
+}
+.paperCount {
+	position: absolute;
+	left: 420rpx;
+}
+.nopaper {
+	width: 750rpx;
+	text-align: center;
+	margin-top: 25rpx;
+}
+.checkmore{
+	width: 750rpx;
+	text-align: center;
+	margin-top: 20rpx;
+}
+

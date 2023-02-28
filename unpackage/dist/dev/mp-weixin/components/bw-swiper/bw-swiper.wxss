@@ -11,7 +11,6 @@
 	-webkit-transform: scale(0.9, 0.8);
 	        transform: scale(0.9, 0.8);
 	opacity: 0.7;
-	-webkit-transition: all 0.1s ease-in 0s;
 	transition: all 0.1s ease-in 0s;
 	overflow: hidden;
 	box-sizing: border-box;
@@ -21,7 +20,6 @@
 	-webkit-transform: initial;
 	        transform: initial;
 	opacity: 1;
-	-webkit-transition: all 0.1s ease-in 0s;
 	transition: all 0.1s ease-in 0s;
 }
 .swiper-item view {

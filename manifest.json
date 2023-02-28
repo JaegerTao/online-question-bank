@@ -57,13 +57,13 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "wx2ae6613c67b30006",
+        "appid" : "wx843d554d8dad3511",
         "cloudfunctionRoot" : "./cloudfunctions/",
         "setting" : {
             "urlCheck" : false,
-            "postcss" : false,
-            "minified" : true,
-            "es6" : false
+            "postcss" : true,
+            "minified" : false,
+            "es6" : true
         },
         "usingComponents" : true
     },

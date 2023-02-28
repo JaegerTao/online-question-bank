@@ -1,0 +1,50 @@
+
+.msgitem{
+	position: relative;
+	width: 750rpx;
+	background-color: #ffffff;
+	border-bottom: 1rpx solid #c8c8c8;
+}
+.icon{
+}
+.icon > image{
+	margin-left: 20rpx;
+	margin-top: 20rpx;
+	width: 100rpx;
+	height: 100rpx;
+}
+.msgtitle{
+	position: relative;
+	top: -100rpx;
+	left: 130rpx;
+}
+.msgtitletype{
+	position: relative;
+	font-size: 30rpx;
+}
+.delthis{
+	position: absolute;
+	font-size: 30rpx;
+	top: -5rpx;
+	left: 540rpx;
+}
+.msgmain{
+	position: relative;
+	top: -80rpx;
+	left: 130rpx;
+	width: 600rpx;
+}
+.msgcontent{
+	position: relative;
+	width: 600rpx;
+	font-size: 30rpx;
+}
+.noticetime{
+	position: relative;
+	top: 30rpx;
+	font-size: 25rpx;
+}
+.clear{
+	clear: both;
+}
+

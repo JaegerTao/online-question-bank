@@ -1,0 +1,27 @@
+
+.title{
+	margin: 20rpx;
+	padding: 20rpx;
+	border-radius: 15rpx 15rpx 15rpx 15rpx;
+	box-shadow: 10rpx 10rpx 5rpx #e2e2e2;
+}
+.TestName{
+	font-size: 32rpx;
+	margin-top: 20rpx;
+}
+.SubmitTime{
+	margin: 20rpx;
+}
+.paperdetail{
+	font-size: 32rpx;
+}
+.resultGrid{
+	margin: 10rpx;
+	margin-bottom: 20rpx;
+	padding: 20rpx;
+	box-shadow: 10rpx 10rpx 5rpx #e2e2e2;
+}
+.Btns{
+	margin-top: 30rpx;
+}
+

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "练习记录",
+  "usingComponents": {
+    "icon-text-item": "/components/icon-text-item",
+    "record-item": "/components/record-item",
+    "examlistitem": "/components/exam-list-item"
+  }
+}

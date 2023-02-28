@@ -9,6 +9,7 @@
 		<view class="subHead">
 			<text :style="{ fontSize : '30rpx' }">{{ subHead }}</text>
 		</view>
+		<view class="messagenum cu-btn bg-blue text-white round" v-if="messagenum > 0">{{ messagenum }}</view>
 		<view class="goBtn">
 			<text class="cuIcon-right" :style="{ fontSize : (listSize / 2)+ 'rpx'}"></text>
 		</view>
@@ -38,7 +39,11 @@
 			iconSize: {
 				type: String,
 				default: '100'
-			}
+			},
+			messagenum:{
+				type: Number,
+				default: 0
+			},
 		},
 		data() {
 			return {
@@ -81,6 +86,12 @@
 		left: 170rpx;
 		top: 80rpx;
 		color: #639494;
+	}
+	.messagenum{
+		position: absolute;
+		left: 580rpx;
+		top: 40rpx;
+		font-size: 25rpx;
 	}
 	.goBtn {
 		position: absolute;

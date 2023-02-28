@@ -1,14 +1,9 @@
 
 .flex {
-	display: -webkit-box;
-	display: -webkit-flex;
 	display: flex;
 }
 .flex-row {
-	-webkit-box-orient: horizontal;
-	-webkit-box-direction: normal;
-	-webkit-flex-direction: row;
-	        flex-direction: row;
+	flex-direction: row;
 }
 .list-item {
 	width: 730rpx;
@@ -32,6 +27,12 @@
 	left: 170rpx;
 	top: 80rpx;
 	color: #639494;
+}
+.messagenum{
+	position: absolute;
+	left: 580rpx;
+	top: 40rpx;
+	font-size: 25rpx;
 }
 .goBtn {
 	position: absolute;

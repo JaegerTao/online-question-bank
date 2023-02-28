@@ -6,7 +6,14 @@
     "pages/login/login",
     "pages/paperList/paperList",
     "pages/paperListItem/paperListItem",
-    "pages/exam/questionDetails/questionDetails"
+    "pages/exam/questionDetails/questionDetails",
+    "pages/messagecenter/messagecenter",
+    "pages/testRecord/testRecord",
+    "pages/personalcenter/helpCenter/helpCenter",
+    "pages/login/loginUserPwd/loginUserPwd",
+    "pages/personalcenter/accountManage/accountManage",
+    "pages/errorRecord/errorRecord",
+    "pages/exam/testResult/testResult"
   ],
   "subPackages": [],
   "window": {

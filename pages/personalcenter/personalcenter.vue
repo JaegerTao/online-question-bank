@@ -1,83 +1,91 @@
 <template>
-	<view class="center" v-if="!isLogin">
-		<view class="logo" @click="goLogin" :hover-class="!login ? 'logo-hover' : ''">
-			<image class="logo-img" :src="login ? userinfo.avatarUrl :avatarUrl"></image>
-			<view class="logo-title">
-				<text class="uer-name">Hi，{{login ? userinfo.name : '您未登录'}}</text>
-				<text class="go-login navigat-arrow" v-if="!login">&#xe65e;</text>
+	<view class="">
+		<view class="center">
+			<view class="logo" v-if="!isLogin" @click="goLogin" :hover-class="!isLogin ? 'logo-hover' : ''">
+				<image class="logo-img" :src="isLogin ? userinfo.avatarUrl :avatarUrl"></image>
+				<view class="logo-title">
+					<text class="uer-name">登录题库</text>
+				</view>
+			</view>
+			<view class="logo" v-else-if="isLogin" :hover-class="!isLogin ? 'logo-hover' : ''">
+				<image class="logo-img" :src="isLogin ? userinfo.avatarUrl :avatarUrl"></image>
+				<view class="logo-title">
+					<text class="uer-name">{{ "&nbsp;&nbsp;" + userinfo.name + "&nbsp;&nbsp;"}}
+						<text class="Vipflag cu-btn text-white bg-green">会员</text>
+					</text>
+				</view>
+			</view>
+			
+			<view class="center-list">
+				<!-- <view class="center-list-item border-bottom" v-if="isLogin" @tap="goAccountMng">
+					<text class="list-icon cuIcon-vip"></text>
+					<text class="list-text">帐号管理</text>
+					<text class="navigat-arrow">&#xe65e;</text>
+				</view> -->
+				<view class="center-list-item border-bottom" @tap="goHelpCenter">
+					<text class="list-icon cuIcon-question"></text>
+					<text class="list-text">关于我们</text>
+					<text class="navigat-arrow">&#xe65e;</text>
+				</view>
+			</view>
+			
+			<view class="rclogo">
+				<image src="../../static/logo-b.png" mode="aspectFit" lazy-load="true"></image>
+				<text class="rctitle">成都人才网</text>
+				<text class="rcadr">www.rc114.com</text>
+			</view>
+			
+			<view class="btnLogout">
+				<view class="cu-btn bg-orange round shadow" v-if="isLogin" @tap="logout">退出登录</view>
 			</view>
 		</view>
+			
 		
-		<view class="center-list">
-			<view class="center-list-item border-bottom">
-				<text class="list-icon">&#xe60f;</text>
-				<text class="list-text">帐号管理</text>
-				<text class="navigat-arrow">&#xe65e;</text>
-			</view>
-		</view>
-		<view class="center-list">
-			<view class="center-list-item border-bottom">
-				<text class="list-icon">&#xe60b;</text>
-				<text class="list-text">帮助与反馈</text>
-				<text class="navigat-arrow">&#xe65e;</text>
-			</view>
-		</view>
-	</view>
+	</view>	
 	
-	
-	<view class="center" v-else-if="isLogin">
-		<view class="logo" :hover-class="!isLogin ? 'logo-hover' : ''">
-			<image class="logo-img" :src="isLogin ? userinfo.avatarUrl :avatarUrl"></image>
-			<view class="logo-title">
-				<text class="uer-name">Hi，{{isLogin ? userinfo.name : '您已登录'}}</text>
-				<text class="go-login navigat-arrow" v-if="!isLogin">&#xe65e;</text>
-			</view>
-		</view>
-		<view class="center-list">
-			<view class="center-list-item border-bottom">
-				<text class="list-icon">&#xe60f;</text>
-				<text class="list-text">帐号管理</text>
-				<text class="navigat-arrow">&#xe65e;</text>
-			</view>
-		</view>
-		<view class="center-list">
-			<view class="center-list-item border-bottom">
-				<text class="list-icon">&#xe60b;</text>
-				<text class="list-text">帮助与反馈</text>
-				<text class="navigat-arrow">&#xe65e;</text>
-			</view>
-		</view>
-		<view class="center-list">
-			<view class="center-list-item" @tap="logout">
-				<text class="list-icon">&#xe614;</text>
-				<text class="list-text">退出登录</text>
-				<text class="navigat-arrow">&#xe65e;</text>
-			</view>
-		</view>
-	</view>
 </template>
 
 <script>
+	import reqAddress from 'common/reqAddress.js'
 	export default {
 		data() {
 			return {
-				isLogin: false,
-				avatarUrl: "../../static/unlogin.png",
+				isLogin: null,
+				avatarUrl: "../../static/hm-sms-list-card/images/img_25832_0_2.png",
 				userinfo: {
-					name: 'Tao',
-					avatarUrl: '../../static/logo.png'
-				}
+					name: '',
+					avatarUrl: ''//'../../static/logo-b.png'
+				},
+				
+				cookie: '',
+				LoginId: ''
 			}
 		},
 		onLoad() {
-			
-		},
-		onShow() {
-			if(global.isLogin()){
+			uni.showLoading({
+				title:'加载中...',
+				mask: true
+			});
+			this.LoginId = uni.getStorageSync('LoginId');
+			if(this.LoginId != ''){
+				this.cookie = uni.getStorageSync('sessionid');
 				this.isLogin = true;
 			}else{
 				this.isLogin = false;
 			}
+		},
+		onShow() {
+			this.LoginId = uni.getStorageSync('LoginId');
+			if(this.LoginId != ''){
+				this.isLogin = true;
+			}else{
+				this.isLogin = false;
+			}
+			if(this.isLogin){
+				this.userinfo.name = uni.getStorageSync('Pname');
+				this.getMessage();
+			}
+			uni.hideLoading();
 		},
 		methods: {
 			goLogin() {
@@ -90,11 +98,98 @@
 					});
 				}
 			},
+			
+			//退出登录
 			logout(){
-				uni.setStorageSync('suid', '');
-				uni.setStorageSync('srand', '');
-				uni.switchTab({
-					url:'../index/index'
+				uni.request({
+					url: reqAddress.DomainName + '/loginVerify/exit',
+					dataType:'json',
+					header:{
+						'cookie': this.cookie
+					},
+					success: (res) => {
+						console.log(res);
+						if(res.data.errcode == 1){
+							this.afterlogin(1, this.LoginId);
+							
+							uni.clearStorage();
+							// uni.setStorageSync('sessionid', '');
+							// uni.setStorageSync('LoginId', '');
+							// uni.setStorageSync('Pname', '');
+							// uni.setStorageSync('RoleFlag', '');
+							// uni.setStorageSync('TOKEN', '');
+							uni.reLaunch({
+								url:'../index/index'
+							})
+						}
+					}
+				})
+				// uni.setStorageSync('LoginId', '');
+				// uni.setStorageSync('Pname', '');
+				// uni.setStorageSync('RoleFlag', '');
+				// uni.switchTab({
+				// 	url:'../index/index'
+				// })
+			},
+			
+			//跳转到帮助中心页面
+			goHelpCenter(){
+				uni.navigateTo({
+					url:'helpCenter/helpCenter'
+				})
+			},
+			
+			//跳转到账号管理页面
+			goAccountMng(){
+				uni.showToast({
+					title:'暂未开放',
+					icon:'none'
+				})
+				// uni.navigateTo({
+				// 	url:'accountManage/accountManage'
+				// })
+			},
+			
+			afterlogin(type, loginId){
+				//账号密码登录成功，type为0
+				//账号密码退出成功，type为1
+				uni.login({
+					provider:'weixin',
+					success: (res) => {
+						const code = res.code;
+						uni.request({
+							url:reqAddress.DomainName + '/funcQuestion/WeChatLogIn/AfterLoginAndOut',
+							method:'GET',
+							data:{
+								code, type, loginId
+							},
+							success: (res) => {
+								console.log(res);	
+							},
+							fail: (err) => {
+								console.log(err);
+							}
+						})
+					}
+				})
+			},
+			
+			getMessage(){
+				uni.request({
+					url: reqAddress.DomainName + '/person/getMessage',
+					method: 'GET',
+					data:{
+						LoginId : this.LoginId
+					},
+					header:{
+						'cookie': this.cookie
+					},
+					success: (res) => {
+						// console.log(res.data);
+						if(res.data.errcode == 1){
+							this.userinfo.avatarUrl = res.data.data.photoPath;
+						}
+					}
 				})
 			}
 		}
@@ -106,7 +201,7 @@
 		font-family: texticons;
 		font-weight: normal;
 		font-style: normal;
-		src: url('https://at.alicdn.com/t/font_984210_5cs13ndgqsn.ttf') format('truetype');
+		src: url('../../static/font_ali.ttf') format('truetype');
 	}
 
 	page,
@@ -123,11 +218,16 @@
 	}
 
 	.logo {
-		width: 750upx;
+		
+		width: 720rpx;
+		margin-left: 15rpx;
 		height: 240upx;
 		padding: 20upx;
+		padding-left: 50rpx;
 		box-sizing: border-box;
-		background-color: #4cd964;
+		background-color: #FFFFFF;
+		border-radius: 0rpx 0rpx 15rpx 15rpx;
+		box-shadow: 10rpx 10rpx 5rpx #e2e2e2;
 		flex-direction: row;
 		align-items: center;
 	}
@@ -137,9 +237,11 @@
 	}
 
 	.logo-img {
-		width: 150upx;
-		height: 150upx;
+		width: 120upx;
+		height: 120upx;
 		border-radius: 150upx;
+		border: 1rpx solid #dddddd;
+		border-style: double;
 	}
 
 	.logo-title {
@@ -155,7 +257,7 @@
 		height: 60upx;
 		line-height: 60upx;
 		font-size: 38upx;
-		color: #FFFFFF;
+		color: #000000;
 	}
 
 	.go-login.navigat-arrow {
@@ -197,9 +299,9 @@
 		height: 90upx;
 		line-height: 90upx;
 		font-size: 34upx;
-		color: #4cd964;
+		color: #ffaa00;
 		text-align: center;
-		font-family: texticons;
+		/* font-family: texticons; */
 		margin-right: 20upx;
 	}
 
@@ -220,5 +322,45 @@
 		color: #555;
 		text-align: right;
 		font-family: texticons;
+	}
+	
+	.rclogo{
+		position: relative;
+		left: 225rpx;
+	}
+	.rclogo > image{
+		width: 300rpx;
+		height: 300rpx;
+	}
+	.rctitle{
+		position: absolute;
+		top: 270rpx;
+		font-size: 40rpx;
+		font-weight: 1000;
+		width: 300rpx;
+		text-align: center;
+	}
+	.rcadr{
+		position: absolute;
+		top: 335rpx;
+		font-size: 30rpx;
+		width: 300rpx;
+		text-align: center;
+	}
+	.btnLogout{
+		position: relative;
+		top: 250rpx;
+		width: 350rpx;
+		left: 200rpx;
+		text-align: center;
+	}
+	.btnLogout > view{
+		width: 350rpx;
+		/* color: #09BB07; */
+	}
+	.Vipflag{
+		height: 40rpx;
+		font-size: 30rpx;
+		border-radius: 5rpx;
 	}
 </style>
